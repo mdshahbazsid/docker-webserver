@@ -1,0 +1,37 @@
+======================================================================================================
+If You want to run the magento commands : 
+======================================================================================================
+> bash deploy_magento.sh
+
+NOTE : The File 'deploy_magento.sh' must be at the <magento-root> Directory.
+
+
+======================================================================================================
+If You want to run the magento crons by job name : 
+======================================================================================================
+> php n98-magerun2.phar sys:cron:run <cron_job_name>
+
+NOTE : The File 'n98-magerun2.phar' must be at the <magento-root> Directory.
+
+
+======================================================================================================
+If You want to check the module composer versions which is present in the app/code directory : 
+======================================================================================================
+> bash get_versions.sh
+
+NOTE : The File 'get_versions.sh' must be at the <magento-root> Directory.
+
+
+======================================================================================================
+Generate MEQPs :
+======================================================================================================
+<magento-root-path>/vendor/bin/phpcs --report=xml --report-file=/home/cedcoss/Desktop/Project/OttoMEQP-SEVERITY-10.xml /home/cedcoss/Desktop/Project/CPD/Otto/ --standard=Magento2 --severity=10 --ignore-annotations
+
+
+======================================================================================================
+Generate Bulk Data : 
+======================================================================================================
+php bin/magento setup:perf:generate-fixtures /var/www/html/magento2/setup/performance-toolkit/profiles/ce/small.xml
+
+
+

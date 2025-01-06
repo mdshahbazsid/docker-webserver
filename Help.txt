@@ -1,0 +1,100 @@
+Prerequisites : 
+-----------------------------------------------------------------------------
+1. Docker Must be Installed with Docker Compose
+	> https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04
+	> https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04
+
+2. .docker folder must have proper Permission
+	> sudo chmod -R 755 .docker/
+
+Installation : 
+------------------------------------------------------------------------------
+	> Create a folder anywhere like docker in your system.
+	> Extract All the Files In the Above Folder.
+	> Run Command : bash docker-setup.sh
+	> Run Command : docker-compose build
+	> Run Command : docker-compose up -d
+	> Check for the running contianers by Command - docker ps
+	> Add this (127.0.0.1    localhost   local.docker.com) in your etc/host file, then save it.
+	> Run Command - docker-compose restart
+
+
+About : 
+------------------------------------------------------------------------------
+Installed Services : 
+	- webserver (apache with php 8.3)   | Port - 80:80
+	- composer 2.7.2                    | N/A
+	- mariadb 10.6                      | Port - 3306:3306
+	- phpmyadmin                        | Post - 8081:80
+	- varnish 7.5.0                     | Port - 8082:80
+	- elasticsearch 7.17.19             | Port - 9200:9200
+	- mailhog                           | Port - 8025 For UI, Port - 1025 For SMTP Server
+
+	> .env File To declare Global Variables Like db user, password, db name.
+	> magento-php.ini File to declare php.ini variables.
+	> Root project path : src/
+
+
+Go Inside Docker-Container Bash : 
+-----------------------------------------------------
+docker-compose exec webserver su bhola
+
+
+Install Magento 2.* : 
+----------------------------------------------------------------------------------------
+Community Edition (CE) : 
+composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition=2.4.7 
+
+Enterprice Edition (EE) : 
+composer create-project --repository-url=https://repo.magento.com/ magento/project-enterprise-edition=2.4.7
+
+For Enterprice Edition Magento Keys:
+Public Key: 943103e699f8e94dee0d9f85540836e0 
+Private Key: 8196c85074f6a73fd7108f1e09198d81
+
+For Community Edition Magento Keys:
+Public Key: 8789fc3ad6f602c95b8c90d478ed3241 
+Private Key: 9556281552e2a85d65b8931902db2a3a 
+
+php bin/magento setup:install \
+--base-url=http://local.docker.com/magento/pub/ \
+--db-host=mysql-db \
+--db-name=magento_ce_2.4.7 \
+--db-user=root \
+--db-password=password \
+--admin-firstname=Admin \
+--admin-lastname=Admin \
+--admin-email=admin@admin.com \
+--admin-user=admin \
+--admin-password=admin123 \
+--language=en_US \
+--currency=USD \
+--timezone=America/Chicago \
+--backend-frontname="admin" \
+--use-rewrites=1 \
+--search-engine=elasticsearch7 \
+--elasticsearch-host=elasticsearch \
+--elasticsearch-port=9200
+
+
+Disable Two-Factor Extension
+------------------------------------------------------
+php bin/magento module:disable Magento_AdminAdobeImsTwoFactorAuth Magento_TwoFactorAuth
+
+
+Install Magento Sample Data : 
+------------------------------------------------------
+php bin/magento sampledata:deploy
+
+
+Magento Folder Permissions :
+-------------------------------------------------------
+// 644 permission for files
+find . -type f -exec chmod 644 {} \; 
+
+// 755 permission for directory
+find . -type d -exec chmod 755 {} \; 
+
+chmod 644 ./app/etc/*.xml
+
+chmod -R 777 var/ generated/ pub/media/ pub/static/* app/code/

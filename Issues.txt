@@ -1,0 +1,38 @@
+If Docker Deamon Is Not Running : (docker info - This Command will result in Docker Deamon is not running)  
+===========================================================================================================
+Kill Stale Docker Processes and Restart :
+sudo systemctl stop docker
+sudo systemctl stop docker.socket
+
+Check if any Docker-related processes are still running:
+ps -aux | grep docker
+
+Kill any lingering Docker processes:
+sudo pkill -f docker
+
+Delete stale PID or socket files:
+sudo rm -f /var/run/docker.pid
+sudo rm -f /var/run/docker.sock
+
+sudo aa-remove-unknown
+
+Restart Docker:
+sudo systemctl restart docker
+sudo systemctl restart docker.socket
+
+Verify Docker is running:
+sudo systemctl status docker
+
+Test Docker Functionality After restarting the Docker service, test connectivity:
+docker info
+
+
+If Issue Comes In stoping or Resatrting the Containers like Permission denied : 
+================================================================================
+sudo aa-remove-unknown
+
+
+Issue : Elasticsearch service is Exiting or Permission issue:
+================================================================================
+sudo chown -R $USER:$USER .es-data/ src/ && sudo chmod -R 777 .es-data/ src/
+
