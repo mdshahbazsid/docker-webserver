@@ -37,7 +37,7 @@ Installed Services :
 
 Go Inside Docker-Container Bash : 
 -----------------------------------------------------
-docker-compose exec webserver su bhola
+docker-compose exec webserver su jarvis
 
 
 Install Magento 2.* : 
