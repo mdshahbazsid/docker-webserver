@@ -1,16 +1,17 @@
 # Docker-Webserver
---------------------------------------------
+-
 Docker Webserver - Apache, Mysql, Php
 
 # Supported PHP Versions : 
------------------------------
+-
 - Php 8.3
 - Php 8.2
 - Php 8.1
 - Php 7.4
 
 # Installed Services :
-----------------------------
+-
+
 ```php
 - webserver (apache with php)   | Port - 80:80
 - composer                      | N/A
@@ -57,7 +58,7 @@ Docker Webserver - Apache, Mysql, Php
 
 
 # Prerequisites
------------
+-
 
 ##### 1. Install Docker and Docker Compose
 Docker must be installed on your system, along with Docker Compose. Follow the instructions in the official or community-provided documentation:  
@@ -72,7 +73,7 @@ The `.docker` folder must have the appropriate permissions to ensure smooth oper
 sudo chmod -R 755 .docker/
 ```
 # Setup Instructions
-----------
+-
 
 ##### 1. Configuration Files
 - **`.env` File**: Used to declare global variables such as database username, password, and database name.  
