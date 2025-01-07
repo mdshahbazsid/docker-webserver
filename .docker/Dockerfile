@@ -1,3 +1,4 @@
+# Use an official PHP runtime
 FROM php:PHP_VERSION-apache
 
 # Mandatory Arguments
@@ -5,7 +6,6 @@ ARG COMPOSER_VERSION
 ARG APACHE_USER
 ARG USER_ID
 
-# Use an official PHP runtime
 
 LABEL maintainer="Dev. Mohd Shahbaz mdshahbazsid@gmail.com"
 
@@ -27,6 +27,7 @@ RUN apt-get update && apt-get install -y \
   libsodium-dev \
   libssh2-1-dev \
   libxslt1-dev \
+  libssl-dev \
   lsof \
   vim \
   zip \
@@ -65,25 +66,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 COPY ./.docker/auth.json /home/$APACHE_RUN_USER/.composer/auth.json
 
-#Install - mhsendmail (Mail Support)
-RUN apt-get update && \
-    apt-get install --no-install-recommends --assume-yes --quiet ca-certificates curl git && \
-    rm -rf /var/lib/apt/lists/*
-    
-# Fetch and install Go library
-RUN curl -Lsf 'https://storage.googleapis.com/golang/go1.8.3.linux-amd64.tar.gz' | tar -C '/usr/local' -xvzf -
-
-# Update PATH to include Go binary directory
-ENV PATH /usr/local/go/bin:$PATH
-
-# Install mhsendmail
-RUN go get github.com/mailhog/mhsendmail
-
-# Copy mhsendmail binary to /usr/bin for easier access
-RUN cp /root/go/bin/mhsendmail /usr/bin/mhsendmail
-
-# Configure sendmail path
-RUN echo 'sendmail_path = /usr/bin/mhsendmail --smtp-addr mailhog:1025' > /usr/local/etc/php/php.ini
+#Install - mhsendmail (Mail Support) [MailHog redirects emails from web apps to its SMTP server using mhsendmail, a sendmail replacement created specifically for MailHog]
+RUN curl -Lo /usr/local/bin/mhsendmail https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsendmail_linux_amd64 \
+    && chmod +x /usr/local/bin/mhsendmail
 # End
-
-
