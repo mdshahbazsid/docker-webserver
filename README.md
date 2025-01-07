@@ -52,5 +52,5 @@ Docker Webserver - Apache, Mysql, Php
     - __Ports:__ 8025 (UI), 1025 (SMTP Server)
     - __Usage:__ It is used to test email sending functionality in web applications without sending emails to the actual recipients.
 
-##### Maintainer
+#### Maintainer
 - Dev. Mohd Shahbaz | @mdshahbazsid@gmail.com
