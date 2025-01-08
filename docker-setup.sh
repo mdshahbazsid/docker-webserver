@@ -32,6 +32,8 @@ do
             start_time=$(date +%s.%N)
 
             # Process
+            update_smptport_variable "$PORT_MAILHOG_SMTP"
+            sleep 1
             update_php_variable "$PHP_VERSION_74"
             sleep 1
             update_env_variable "PHP_VERSION" "$PHP_VERSION_74"
@@ -61,6 +63,8 @@ do
             start_time=$(date +%s.%N)
 
             # Process
+            update_smptport_variable "$PORT_MAILHOG_SMTP"
+            sleep 1
             update_php_variable "$PHP_VERSION_81"
             sleep 1
             update_env_variable "PHP_VERSION" "$PHP_VERSION_81"
@@ -90,6 +94,8 @@ do
             start_time=$(date +%s.%N)
 
             # Process
+            update_smptport_variable "$PORT_MAILHOG_SMTP"
+            sleep 1
             update_php_variable "$PHP_VERSION_82"
             sleep 1
             update_env_variable "PHP_VERSION" "$PHP_VERSION_82"
@@ -119,6 +125,8 @@ do
             start_time=$(date +%s.%N)
 
             # Process
+            update_smptport_variable "$PORT_MAILHOG_SMTP"
+            sleep 1
             update_php_variable "$PHP_VERSION_83"
             sleep 1
             update_env_variable "PHP_VERSION" "$PHP_VERSION_83"

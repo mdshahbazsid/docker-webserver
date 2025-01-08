@@ -16,7 +16,7 @@ services:
         USER_ID: ${USER_ID:-0}
     volumes:
       - ./src:/var/www/html
-      - ./.docker/magento-php.ini:/usr/local/etc/php/conf.d/magento-php.ini
+      - ./.docker/custom-php.ini:/usr/local/etc/php/conf.d/custom-php.ini
       - ./.docker/auth.json:/home/${APP_USER}/.composer/auth.json
     ports:
       - "${PORT_WEBSERVER:-80}:80"

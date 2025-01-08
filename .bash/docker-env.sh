@@ -2,6 +2,12 @@
 
 DOCKER_ENV_FILE="$SCRIPT_DIR/.env"
 DOCKER_FILE="$SCRIPT_DIR/.docker/Dockerfile"
+CUSTOM_PHP_INI_FILE="$SCRIPT_DIR/.docker/custom-php.ini"
+
+# Load the .env file to ensure that all variables from the .env file are exported to the script's environment.
+set -a
+source "$DOCKER_ENV_FILE"
+set +a
 
 #Colors
 RED="\e[31m"

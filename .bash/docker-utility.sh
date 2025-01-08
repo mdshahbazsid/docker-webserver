@@ -29,7 +29,7 @@ update_env_variable() {
 update_php_variable() {
     local php_version=$1
 
-    # Check if the .env file exists
+    # Check if the Dockerfile file exists
     if [ ! -f "$DOCKER_FILE" ]; then
         echo -e "   ${RED}✖${ENDCOLOR} ${BOLDRED}Error: Dockerfile file not found at $DOCKER_FILE ${ENDCOLOR}"
         exit 1
@@ -39,7 +39,7 @@ update_php_variable() {
     if grep -q "php:PHP_VERSION-apache" $DOCKER_FILE; then
         # Replace php:PHP_VERSION-apache with the desired version (e.g., 7.4)
         sed -i "s/php:PHP_VERSION-apache/php:${php_version}-apache/" $DOCKER_FILE
-        echo -e "   ${GREEN}➜ Added : ${php_version} In Dockerfile.${ENDCOLOR}"
+        echo -e "   ${GREEN}➜ Added : PHP Version = ${php_version} In Dockerfile.${ENDCOLOR}"
     else
         # Check if the PHP version is already set in Dockerfile (e.g., php:8.5-apache)
         current_version=$(grep -oP 'FROM php:\K[0-9.]+(?=-apache)' $DOCKER_FILE)
@@ -47,6 +47,33 @@ update_php_variable() {
             echo -e "   ${GREEN}➜ Skipped Updating PHP version ${php_version}, Already Present PHP version ${current_version}.${ENDCOLOR}"
         else
             echo -e "   ${RED}✖${ENDCOLOR} ${BOLDRED}Error: No PHP version found in Docker. ${ENDCOLOR}"
+            exit 1
+        fi
+    fi
+}
+
+# Function to update SMTP PORT in custom-php.ini file
+update_smptport_variable() {
+    local smptport=$1
+
+    # Check if the custom-php.ini file exists
+    if [ ! -f "$CUSTOM_PHP_INI_FILE" ]; then
+        echo -e "   ${RED}✖${ENDCOLOR} ${BOLDRED}Error: custom-php.ini file not found at $CUSTOM_PHP_INI_FILE ${ENDCOLOR}"
+        exit 1
+    fi
+
+    # Check if SMTP_PORT placeholder is present in custom-php.ini
+    if grep -q "mailhog:SMTP_PORT" $CUSTOM_PHP_INI_FILE; then
+        # Replace mailhog:SMTP_PORT with the desired port
+        sed -i "s/mailhog:SMTP_PORT/mailhog:${smptport}/" $CUSTOM_PHP_INI_FILE
+        echo -e "   ${GREEN}➜ Added : SMTP Port = ${smptport} In custom-php.ini file.${ENDCOLOR}"
+    else
+        # Check if the smptport version is already set in custom-php.ini
+	current_value=$(grep -- 'smtp-addr=mailhog:' "$CUSTOM_PHP_INI_FILE" | sed 's/.*mailhog://; s/"//g')
+        if [ -n "$current_value" ]; then
+            echo -e "   ${GREEN}➜ Skipped Updating SMTP Port ${smptport}, Already Present Port ${current_value}.${ENDCOLOR}"
+        else
+            echo -e "   ${RED}✖${ENDCOLOR} ${BOLDRED}Error: No SMTP_POST found in Docker. ${ENDCOLOR}"
             exit 1
         fi
     fi
