@@ -31,7 +31,7 @@ Installed Services :
 	- mailhog                           | Port - 8025 For UI, Port - 1025 For SMTP Server
 
 	> .env File To declare Global Variables Like db user, password, db name.
-	> magento-php.ini File to declare php.ini variables.
+	> custom-php.ini File to declare php.ini variables.
 	> Root project path : src/
 
 

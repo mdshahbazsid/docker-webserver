@@ -74,10 +74,10 @@ sudo chmod -R 755 .docker/
 
 ##### 1. Configuration Files
 - **`.env` File**: Used to declare global variables such as database username, password, and database name.  
-- **`magento-php.ini` File**: Used to define custom `php.ini` variables.  
+- **`custom-php.ini` File**: Used to define custom `php.ini` variables.  
 
 ##### 2. Folder Structure
-- **Root Path**: All Magento source files should be placed in the `src/` directory.  
+- **Root Path**: All source files should be placed in the `src/` directory.  
 - **Docker Directory**: Create a directory to store your Docker setup, e.g., `docker-local`, and extract all the Docker-related files into this directory.  
 
 ##### 3. Docker Commands
