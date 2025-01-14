@@ -111,19 +111,38 @@ sudo chmod -R 755 .docker/
    ```bash
    docker-compose exec webserver su jarvis
    ```
-- Check if Apache is running Or not, Open the Below Url In Browser:
-   ```bash
-   http://local.docker.com/
-   ```
-  ![alt text](https://github.com/mdshahbazsid/docker-webserver/blob/main/image.jpg?raw=true)
+  
+- Access **Apache WebServer :** http://localhost/
+
+     ![alt text](https://github.com/mdshahbazsid/docker-webserver/blob/main/src/misc/docker-webserver-success.png?raw=true)
+
+- Access **phpMyAdmin :** http://localhost:8081/
+
+    ![alt text](https://github.com/mdshahbazsid/docker-webserver/blob/main/src/misc/docker-phpmyadmin-success.png?raw=true)
+
+- Access **MailHog :** http://localhost:8025/
+
+    ![alt text](https://github.com/mdshahbazsid/docker-webserver/blob/main/src/misc/docker-mailhog-success.png?raw=true)
+    
+- Access **ElasticSearch :** http://localhost:9200/
+
+    ![alt text](https://github.com/mdshahbazsid/docker-webserver/blob/main/src/misc/docker-elasticsearch-success.png?raw=true)
   
 ## Setup Magento 2
-##### 1. Install Magento 2.* : 
-**All Below Commands Should Be run inside the docker container.**
+
+- **Install Magento 2.x :** All Below Commands Should Be run inside the docker container.
+
 - **Create Empty Directory :** To install Magento Create the Empty directory By Command:
     ```bash
     mkdir magento
     cd magento
+    ```
+
+- **Create Empty Database :** Create empty database by running below command:
+    ```bash
+    (This Command Should be run Outisde Docker Container): 
+    -----------------------------------------------------------------------------
+    docker exec -it <mysql-container-name> -uroot -ppassword -e 'CREATE DATABASE magento;'
     ```
   
 - **Community Edition (CE) :** To install the Community Edition (CE), use the following command:
@@ -141,7 +160,7 @@ sudo chmod -R 755 .docker/
     php bin/magento setup:install \
     --base-url=http://local.docker.com/magento/pub/ \
     --db-host=mysql-db \
-    --db-name=magento_ce_2.4.7 \
+    --db-name=magento \
     --db-user=root \
     --db-password=password \
     --admin-firstname=Admin \

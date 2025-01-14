@@ -31,6 +31,9 @@ php bin/magento setup:install \
 --elasticsearch-host=elasticsearch \
 --elasticsearch-port=9200
 
+Access DataBase By Cli : 
+------------------------------------------------------
+docker exec -it <mysql-container-name> mysql -u root -p
 
 Disable Two-Factor Extension
 ------------------------------------------------------
