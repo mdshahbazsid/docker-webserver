@@ -130,7 +130,7 @@ sudo chmod -R 755 .docker/
   
 ## Setup Magento 2
 
-- **Install Magento 2.x :** All Below Commands Should Be run inside the docker container.
+- **Install Magento 2.x :** All the commands below must be executed inside the Docker container.
 
 - **Create Empty Directory :** To install Magento Create the Empty directory By Command:
     ```bash
@@ -140,7 +140,7 @@ sudo chmod -R 755 .docker/
 
 - **Create Empty Database :** Create empty database by running below command:
     ```bash
-    (This Command Should be run Outisde Docker Container): 
+    (This command must be run outside the Docker container) :
     -----------------------------------------------------------------------------
     docker exec -it <mysql-container-name> -uroot -ppassword -e 'CREATE DATABASE magento;'
     ```
