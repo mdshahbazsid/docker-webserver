@@ -7,13 +7,9 @@ composer create-project --repository-url=https://repo.magento.com/ magento/proje
 Enterprice Edition (EE) : 
 composer create-project --repository-url=https://repo.magento.com/ magento/project-enterprise-edition=2.4.7
 
-For Enterprice Edition Magento Keys:
-Public Key: 943103e699f8e94dee0d9f85540836e0 
-Private Key: 8196c85074f6a73fd7108f1e09198d81
-
-For Community Edition Magento Keys:
-Public Key: 8789fc3ad6f602c95b8c90d478ed3241 
-Private Key: 9556281552e2a85d65b8931902db2a3a 
+Magento Keys:
+Public Key: ****************** 
+Private Key: *****************
 
 php bin/magento setup:install \
 --base-url=http://local.docker.com/magento/pub/ \

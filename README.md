@@ -111,5 +111,77 @@ sudo chmod -R 755 .docker/
    ```bash
    docker-compose exec webserver su jarvis
    ```
+- Check if Apache is running Or not, Open the Below Url In Browser:
+   ```bash
+   http://local.docker.com/
+   ```
+  ![alt text](https://github.com/mdshahbazsid/docker-webserver/blob/main/image.jpg?raw=true)
+  
+## Setup Magento 2
+##### 1. Install Magento 2.* : 
+**All Below Commands Should Be run inside the docker container.**
+- **Create Empty Directory :** To install Magento Create the Empty directory By Command:
+    ```bash
+    mkdir magento
+    cd magento
+    ```
+  
+- **Community Edition (CE) :** To install the Community Edition (CE), use the following command:
+    ```bash
+    composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition=2.*
+    ```  
+  
+- **Enterprise Edition (EE) :** To install the Enterprise Edition (EE), use the following command:
+    ```bash
+    composer create-project --repository-url=https://repo.magento.com/ magento/project-enterprise-edition=2.*
+    ```  
+  
+- **Magento Installation Command**
+    ```bash
+    php bin/magento setup:install \
+    --base-url=http://local.docker.com/magento/pub/ \
+    --db-host=mysql-db \
+    --db-name=magento_ce_2.4.7 \
+    --db-user=root \
+    --db-password=password \
+    --admin-firstname=Admin \
+    --admin-lastname=Admin \
+    --admin-email=admin@admin.com \
+    --admin-user=admin \
+    --admin-password=admin123 \
+    --language=en_US \
+    --currency=USD \
+    --timezone=America/Chicago \
+    --backend-frontname="admin" \
+    --use-rewrites=1 \
+    --search-engine=elasticsearch7 \
+    --elasticsearch-host=elasticsearch \
+    --elasticsearch-port=9200
+    ```
+  
+- **Disable Two-Factor Authentication Modules :** To disable the two-factor authentication modules, use the following command:
+    ```bash
+    php bin/magento module:disable Magento_AdminAdobeImsTwoFactorAuth Magento_TwoFactorAuth
+    ```
+  
+- **Install Magento Sample Data :** To deploy Magento sample data, use the following command:
+    ```bash
+    php bin/magento sampledata:deploy
+    ```
+  
+- **Run Magento Commands Using a Script :** To simplify running Magento commands, you can use the deploy_magento.sh script. Make sure the script is located in the Magento root directory.
+    ```bash
+    bash deploy_magento.sh
+    ```
+    **Note :**  Ensure the file deploy_magento.sh exists in the <magento-root> directory.
+
+## Help and Support
+
+- Custom Php ini file support : .docker/custom-php.ini
+- deploy_magento.sh File Location : src/misc/deploy_magento.sh
+- Magento Command Help : src/misc/Help_Mage.txt
+- Known Docker Issues Refer to File : Issues.txt
+
+
 ## Maintainer
 - Dev. Mohd Shahbaz | @mdshahbazsid@gmail.com
