@@ -192,12 +192,12 @@ sudo chmod -R 755 .docker/
     ```bash
     bash deploy_magento.sh
     ```
-    **Note :**  Ensure the file deploy_magento.sh exists in the <magento-root> directory.
+    **Note :**  Ensure the file deploy_magento.sh exists in the <magento-root>/ directory.
 
 ## Help and Support
 
 - Custom Php ini file support : .docker/custom-php.ini
-- deploy_magento.sh File Location : src/misc/deploy_magento.sh
+- File deploy_magento.sh Location : src/misc/deploy_magento.sh
 - Magento Command Help : src/misc/Help_Mage.txt
 - Known Docker Issues Refer to File : Issues.txt
 
