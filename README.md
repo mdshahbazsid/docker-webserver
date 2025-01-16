@@ -1,5 +1,5 @@
 # Docker-WebServer
-Docker Webserver - Apache, Mysql, Php
+Docker WebServer - Apache, MySQL, and PHP
 
 <sup><code>**Specifically engineered to seamlessly run Magento, the Adobe Commerce platform.</code></sup>
 
