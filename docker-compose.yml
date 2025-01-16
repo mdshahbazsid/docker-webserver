@@ -20,6 +20,7 @@ services:
       - ./.docker/auth.json:/home/${APP_USER}/.composer/auth.json
     ports:
       - "${PORT_WEBSERVER:-80}:80"
+      - "${PORT_SSL:-443}:443"
     depends_on:
       - mysql-db
     networks:
@@ -97,6 +98,21 @@ services:
     ports:
       - "${PORT_MAILHOG_SMTP:-1025}:1025"
       - "${PORT_MAILHOG_UI:-8025}:8025"
+    networks:
+      - custom-docker-network
+      
+  ngrok:
+    image: ngrok/ngrok:latest
+    restart: unless-stopped
+    command:
+      - "start"
+      - "--all"
+      - "--config"
+      - "/etc/ngrok.yml"
+    volumes:
+      - ./.apache/ngrok.yml:/etc/ngrok.yml
+    ports:
+      - "${PORT_NGROK:-4040}:4040"
     networks:
       - custom-docker-network
       

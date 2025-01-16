@@ -1,0 +1,10 @@
+version: 3
+
+agent:
+  authtoken: 2remaGZSN1stde26ST3LS2jR421_5vfKcV9XJVxBTWphvADAS
+
+tunnels:
+  basic:
+    proto: http
+    addr: webserver:80
+

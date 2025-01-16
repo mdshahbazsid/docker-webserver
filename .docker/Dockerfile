@@ -16,6 +16,7 @@ RUN adduser --uid $USER_ID --gecos 'Dev. Mohd Shahbaz' --disabled-password "$APA
              
 # Install any extensions you need
 RUN apt-get update && apt-get install -y \
+  nano \
   cron \
   gzip \
   libbz2-dev \
@@ -58,8 +59,14 @@ RUN docker-php-ext-install \
   xsl \
   zip 
 
-# Enable Apache modules
-RUN a2enmod rewrite
+# Copy SSL certificate and key
+COPY ./../.ssl/* /etc/apache2/ssl/
+
+# Copy the custom Apache virtual host config
+COPY ./../.apache/000-default.conf /etc/apache2/sites-available/000-default.conf
+
+# Enable Apache modules, Enable SSL module
+RUN a2enmod ssl && a2enmod rewrite
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=${COMPOSER_VERSION}
@@ -69,4 +76,23 @@ COPY ./.docker/auth.json /home/$APACHE_RUN_USER/.composer/auth.json
 #Install - mhsendmail (Mail Support) [MailHog redirects emails from web apps to its SMTP server using mhsendmail, a sendmail replacement created specifically for MailHog]
 RUN curl -Lo /usr/local/bin/mhsendmail https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsendmail_linux_amd64 \
     && chmod +x /usr/local/bin/mhsendmail
+# End
+
+# Setup Crontab
+# Copy cron file to the container
+COPY ./.apache/crontab /etc/cron.d/crontab
+
+# Create the log file to be able to run tail for cron logs
+RUN touch /var/log/cron.log
+RUN chmod 0666 /var/log/cron.log
+
+# Give the permission and Set the cron file permissions and ownership
+RUN chown $APACHE_RUN_USER:$APACHE_RUN_GROUP /etc/cron.d/crontab && \
+    chmod 0666 /etc/cron.d/crontab && \
+    su -c "crontab /etc/cron.d/crontab" $APACHE_RUN_USER
+
+RUN crontab /etc/cron.d/crontab
+
+# Start cron service
+RUN sed -i 's/^exec /service cron start\n\nexec /' /usr/local/bin/apache2-foreground
 # End
