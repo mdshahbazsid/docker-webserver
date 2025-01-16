@@ -19,8 +19,8 @@ services:
       - ./.docker/custom-php.ini:/usr/local/etc/php/conf.d/custom-php.ini
       - ./.docker/auth.json:/home/${APP_USER}/.composer/auth.json
     ports:
-      - "${PORT_WEBSERVER:-80}:80"
-      - "${PORT_SSL:-443}:443"
+      - "${PORT_WEBSERVER:-80}:80" # Expose HTTP
+      - "${PORT_SSL:-443}:443"     # Expose HTTPS
     depends_on:
       - mysql-db
     networks:

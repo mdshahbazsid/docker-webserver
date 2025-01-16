@@ -22,13 +22,14 @@ Installation :
 About : 
 ------------------------------------------------------------------------------
 Installed Services : 
-	- webserver (apache with php 8.3)   | Port - 80:80
-	- composer 2.7.2                    | N/A
-	- mariadb 10.6                      | Port - 3306:3306
-	- phpmyadmin                        | Post - 8081:80
-	- varnish 7.5.0                     | Port - 8082:80
-	- elasticsearch 7.17.19             | Port - 9200:9200
-	- mailhog                           | Port - 8025 For UI, Port - 1025 For SMTP Server
+	- webserver (apache with php)   | Port - 80:80 For HTTP, Port - 443 For HTTPS
+	- composer                      | N/A
+	- mariadb                       | Port - 3306:3306
+	- phpmyadmin                    | Post - 8081:80
+	- varnish                       | Port - 8082:80
+	- elasticsearch                 | Port - 9200:9200
+	- mailhog                       | Port - 8025 For UI, Port - 1025 For SMTP Server
+	- ngrok                         | Port - 4040
 
 	> .env File To declare Global Variables Like db user, password, db name.
 	> custom-php.ini File to declare php.ini variables.
@@ -38,3 +39,18 @@ Installed Services :
 Go Inside Docker-Container Bash : 
 -----------------------------------------------------
 docker-compose exec webserver su jarvis
+
+
+To generate Self-Signed SSL Certificates : 
+-----------------------------------------------------
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout server.key -out server.crt -subj "/C=US/ST=MyCountry/L=MyCity/O=MyOrganization/CN=localhost"
+
+
+To Get Public Url Of Ngrok Application
+-----------------------------------------------------
+http://localhost:4040/api/tunnels
+
+
+To View the Statistics of the Ngrok of the application
+-------------------------------------------------------
+http://localhost:4040/

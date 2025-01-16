@@ -12,20 +12,21 @@ Docker Webserver - Apache, Mysql, Php
 ## Installed Services :
 
 ```php
-- webserver (apache with php)   | Port - 80:80
+- webserver (apache with php)   | Port - 80:80 For HTTP, Port - 443 For HTTPS
 - composer                      | N/A
 - mariadb                       | Port - 3306:3306
 - phpmyadmin                    | Post - 8081:80
 - varnish                       | Port - 8082:80
 - elasticsearch                 | Port - 9200:9200
 - mailhog                       | Port - 8025 For UI, Port - 1025 For SMTP Server
+- ngrok                         | Port - 4040
 ```
-* __Webserver (Apache with PHP)__
+- __Webserver (Apache with PHP)__
     - __Description:__ Apache HTTP Server with PHP integration to serve dynamic web pages.
     - __Ports:__ 80:80
     - __Usage:__ It is used to host and serve web applications.
 
-* __Composer__
+- __Composer__
     - __Description:__ Dependency manager for PHP, used for managing libraries and packages in PHP projects.
     - __Ports:__ N/A
     - __Usage:__ It is used to install and update dependencies in PHP projects.
@@ -54,6 +55,11 @@ Docker Webserver - Apache, Mysql, Php
     - __Description:__ An email testing tool for developers that captures outgoing emails and provides a web interface to view them.
     - __Ports:__ 8025 (UI), 1025 (SMTP Server)
     - __Usage:__ It is used to test email sending functionality in web applications without sending emails to the actual recipients.
+
+- __Ngrok__
+    - __Description:__ Ngrok is a service that creates secure tunnels from the internet to your local machine. It is often used to expose local development servers to the web, which can be helpful for testing webhooks, sharing a local website, or remote debugging.
+    - __Ports:__ 4040
+    - __Usage:__ It creates a public URL (like https://your-subdomain.ngrok.io) that forwards traffic to your local server.
 
 
 ## Prerequisites
@@ -200,7 +206,9 @@ sudo chmod -R 755 .docker/
 - File deploy_magento.sh Location : src/misc/deploy_magento.sh
 - Magento Command Help : src/misc/Help_Mage.txt
 - Known Docker Issues Refer to File : Issues.txt
-
+- Apache Default Site : .apache/000-default.conf
+- SSL Certificates : .ssl/
+- Crontab : .apache/crontab
 
 ## Maintainer
 - Dev. Mohd Shahbaz | @mdshahbazsid@gmail.com
