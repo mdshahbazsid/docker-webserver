@@ -103,6 +103,7 @@ services:
       
   ngrok:
     image: ngrok/ngrok:latest
+    container_name: ${PHP_VERSION}_${SERVICE_USER}_ngrok
     restart: unless-stopped
     command:
       - "start"

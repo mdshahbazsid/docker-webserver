@@ -91,8 +91,6 @@ RUN chown $APACHE_RUN_USER:$APACHE_RUN_GROUP /etc/cron.d/crontab && \
     chmod 0666 /etc/cron.d/crontab && \
     su -c "crontab /etc/cron.d/crontab" $APACHE_RUN_USER
 
-RUN crontab /etc/cron.d/crontab
-
 # Start cron service
 RUN sed -i 's/^exec /service cron start\n\nexec /' /usr/local/bin/apache2-foreground
 # End
