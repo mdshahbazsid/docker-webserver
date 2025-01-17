@@ -120,19 +120,23 @@ sudo chmod -R 755 .docker/
   
 - Access **Apache WebServer :** http://localhost/
 
-     ![alt text](https://github.com/mdshahbazsid/docker-webserver/blob/main/src/misc/docker-webserver-success.png?raw=true)
+     ![alt text](https://github.com/mdshahbazsid/docker-webserver/blob/main/src/img/docker-webserver-success.png?raw=true)
 
 - Access **phpMyAdmin :** http://localhost:8081/
 
-    ![alt text](https://github.com/mdshahbazsid/docker-webserver/blob/main/src/misc/docker-phpmyadmin-success.png?raw=true)
+    ![alt text](https://github.com/mdshahbazsid/docker-webserver/blob/main/src/img/docker-phpmyadmin-success.png?raw=true)
 
 - Access **MailHog :** http://localhost:8025/
 
-    ![alt text](https://github.com/mdshahbazsid/docker-webserver/blob/main/src/misc/docker-mailhog-success.png?raw=true)
+    ![alt text](https://github.com/mdshahbazsid/docker-webserver/blob/main/src/img/docker-mailhog-success.png?raw=true)
     
 - Access **ElasticSearch :** http://localhost:9200/
 
-    ![alt text](https://github.com/mdshahbazsid/docker-webserver/blob/main/src/misc/docker-elasticsearch-success.png?raw=true)
+    ![alt text](https://github.com/mdshahbazsid/docker-webserver/blob/main/src/img/docker-elasticsearch-success.png?raw=true)
+
+- Access **Ngrok :** http://localhost:4040/
+
+    ![alt text](https://github.com/mdshahbazsid/docker-webserver/blob/main/src/img/docker-ngrok-success.png?raw=true)
   
 ## Setup Magento 2
 
@@ -212,3 +216,4 @@ sudo chmod -R 755 .docker/
 
 ## Maintainer
 - Dev. Mohd Shahbaz | @mdshahbazsid@gmail.com
+
