@@ -32,7 +32,7 @@ If Issue Comes In stoping or Resatrting the Containers like Permission denied :
 sudo aa-remove-unknown
 
 
-Issue : Elasticsearch service is Exiting or Permission issue:
+Issue : Elasticsearch service is Exiting OR Not Running OR Permission issue:
 ================================================================================
 sudo chown -R $USER:$USER .es-data/ src/ && sudo chmod -R 777 .es-data/ src/
 
