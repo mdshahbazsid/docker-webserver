@@ -11,12 +11,11 @@ Installation :
 ------------------------------------------------------------------------------
 	> Create a folder anywhere like docker in your system.
 	> Extract All the Files In the Above Folder.
-	> Run Command : bash docker-setup.sh
-	> Run Command : docker-compose build
-	> Run Command : docker-compose up -d
-	> Check for the running contianers by Command - docker ps
 	> Add this (127.0.0.1    localhost   local.docker.com) in your etc/host file, then save it.
-	> Run Command - docker-compose restart
+	> Run Command : bash docker-init
+	> Run Command : bash docker-build
+	> Run Command : bash docker-start
+	> Check for the running contianers by Command - bash docker-ps
 
 
 About : 

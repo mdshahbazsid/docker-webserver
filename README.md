@@ -89,11 +89,19 @@ sudo chmod -R 755 .docker/
 ##### 3. Docker Commands
 - Create a folder anywhere like `docker-local` in your system and extract all the Files In the Above Folder.
 
+- Add the following entry to your /etc/hosts file and save it:
+    ```bash
+    127.0.0.1    localhost    local.docker.com
+    ``` 
 - Go to the above directory an Run Command : 
     ```bash
     bash docker-init
     ```
 - Build the Docker images:  
+   ```bash
+   bash docker-build
+    ```
+- Start the Docker images:  
    ```bash
    bash docker-start
     ```
@@ -101,10 +109,6 @@ sudo chmod -R 755 .docker/
     ```bash
     bash docker-ps
     ```
-- Add the following entry to your /etc/hosts file and save it:
-    ```bash
-    127.0.0.1    localhost    local.docker.com
-    ``` 
 - Restart the Docker containers:
     ```bash
     bash docker-restart
