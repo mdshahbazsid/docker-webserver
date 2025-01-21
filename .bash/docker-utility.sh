@@ -110,6 +110,31 @@ command_runs() {
     "$1" --version >/dev/null 2>&1
 }
 
+
+# Function To Build Docker
+build_docker() {
+    #Determine which command to use
+      if command_runs docker-compose; then
+            DOCKER_COMPOSE_CMD="docker-compose"
+      elif command_runs docker compose; then
+            DOCKER_COMPOSE_CMD="docker compose"
+      else
+            echo -e "${RED}✖ Error :${ENDCOLOR} Neither 'docker-compose' nor 'docker compose' is available."
+            exit 1
+      fi
+
+      # Usage of the determined command
+      $DOCKER_COMPOSE_CMD build && \
+      echo -e "
+ ===================== 🚀 Done 🚀 ===========================================================
+
+        Created by Dev. Mohd Shahbaz
+        v.${VERSION}
+        ${GREEN}➜ Success :${ENDCOLOR} Now, Please Run ${CYAN}bash docker-start${ENDCOLOR} To Start The Containers.
+
+ ===================== 🚀 Done 🚀 ==========================================================="
+}
+
 # Function To Start Docker
 start_docker() {
     #Determine which command to use
