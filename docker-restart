@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -e
+
+# Get the directory where the script is located
+SCRIPT_DIR=$(dirname "$(realpath "$0")")
+
+# Include .sh
+source .bash/docker-env.sh
+source .bash/docker-utility.sh
+
+# Validate the PHP_VERSION
+if validate_php_version; then
+      restart_docker;
+else
+    echo -e "${RED}✖ Error :${ENDCOLOR} Invalid PHP_VERSION In Dockerfile, Please Run ${CYAN}bash docker-init${ENDCOLOR} To Initialize."
+    exit 1
+fi

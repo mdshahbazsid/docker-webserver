@@ -38,7 +38,7 @@ Installed Services :
 
 Go Inside Docker-Container Bash : 
 -----------------------------------------------------
-docker-compose exec webserver su jarvis
+bash docker-inside
 
 
 To generate Self-Signed SSL Certificates : 

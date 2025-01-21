@@ -91,19 +91,15 @@ sudo chmod -R 755 .docker/
 
 - Go to the above directory an Run Command : 
     ```bash
-    bash docker-setup.sh
+    bash docker-init
     ```
 - Build the Docker images:  
    ```bash
-   docker-compose build
-    ```
-- Start the Docker containers in detached mode:
-    ```bash
-    docker-compose up -d
+   bash docker-start
     ```
 - Verify that the containers are running:
     ```bash
-    docker ps
+    bash docker-ps
     ```
 - Add the following entry to your /etc/hosts file and save it:
     ```bash
@@ -111,11 +107,15 @@ sudo chmod -R 755 .docker/
     ``` 
 - Restart the Docker containers:
     ```bash
-    docker-compose restart
+    bash docker-restart
     ```  
+- Stop the Docker containers:
+    ```bash
+    bash docker-stop
+    ```
 - Accessing the Docker Container, To access the webserver container's shell as the `jarvis` user:
    ```bash
-   docker-compose exec webserver su jarvis
+   bash docker-inside
    ```
   
 - Access **Apache WebServer :** http://localhost/

@@ -79,3 +79,160 @@ update_smptport_variable() {
     fi
 }
 
+# Function to validate PHP_VERSION in Dockerfile
+validate_php_version() {
+
+    # Check if the Dockerfile file exists
+    if [ ! -f "$DOCKER_FILE" ]; then
+        echo -e "   ${RED}✖${ENDCOLOR} ${BOLDRED}Error: Dockerfile file not found at $DOCKER_FILE ${ENDCOLOR}"
+        exit 1
+    fi
+
+    # Extract the PHP_VERSION Line from the Dockerfile
+    if ! php_version_line=$(grep -E '^FROM php:[^ ]+-apache' "$DOCKER_FILE"); then
+        echo "Error: No valid FROM line found in $DOCKER_FILE"
+        exit 1
+    fi
+
+    # Extract the version part from the line
+    local php_version=$(echo "$php_version_line" | sed -E 's/^FROM php:([^ ]+)-apache/\1/')
+        
+    # Check if the version matches the required patterns
+    if [[ "$php_version" =~ ^[0-9]+\.[0-9]+$ ]]; then
+        return 0  # Valid version
+    else
+        return 1  # Invalid version
+    fi
+}
+
+# Function to check if a command runs without errors
+command_runs() {
+    "$1" --version >/dev/null 2>&1
+}
+
+# Function To Start Docker
+start_docker() {
+    #Determine which command to use
+      if command_runs docker-compose; then
+            DOCKER_COMPOSE_CMD="docker-compose"
+      elif command_runs docker compose; then
+            DOCKER_COMPOSE_CMD="docker compose"
+      else
+            echo -e "${RED}✖ Error :${ENDCOLOR} Neither 'docker-compose' nor 'docker compose' is available."
+            exit 1
+      fi
+
+      # Usage of the determined command
+      $DOCKER_COMPOSE_CMD up -d && \
+      echo -e "
+ ===================== 🚀 Done 🚀 ===================
+
+        Created by Dev. Mohd Shahbaz
+        v.${VERSION}
+        Access your links:
+
+        🌎 ${GREEN}Web server:${ENDCOLOR} http://localhost/
+        ✉️  ${GREEN}Local emails:${ENDCOLOR} http://localhost:8025
+        ⚙️  ${GREEN}PhpMyAdmin:${ENDCOLOR} http://localhost:8081
+        🔍 ${GREEN}ElasticSearch:${ENDCOLOR} http://localhost:9200
+        ☁️  ${GREEN}Ngrok:${ENDCOLOR} http://localhost:4040
+
+ ===================== 🚀 Done 🚀 ==================="
+}
+
+
+# Function To Stop Docker
+stop_docker() {
+    #Determine which command to use
+      if command_runs docker-compose; then
+            DOCKER_COMPOSE_CMD="docker-compose"
+      elif command_runs docker compose; then
+            DOCKER_COMPOSE_CMD="docker compose"
+      else
+            echo -e "${RED}✖ Error :${ENDCOLOR} Neither 'docker-compose' nor 'docker compose' is available."
+            exit 1
+      fi
+
+      # Usage of the determined command
+      $DOCKER_COMPOSE_CMD down 
+}
+
+# Function To Restart Docker
+restart_docker() {
+    #Determine which command to use
+      if command_runs docker-compose; then
+            DOCKER_COMPOSE_CMD="docker-compose"
+      elif command_runs docker compose; then
+            DOCKER_COMPOSE_CMD="docker compose"
+      else
+            echo -e "${RED}✖ Error :${ENDCOLOR} Neither 'docker-compose' nor 'docker compose' is available."
+            exit 1
+      fi
+
+      # Usage of the determined command
+      $DOCKER_COMPOSE_CMD restart 
+}
+
+# Function To check the services in Docker
+show_service_docker() {
+    #Determine which command to use
+      if command_runs docker-compose; then
+            DOCKER_COMPOSE_CMD="docker-compose"
+      elif command_runs docker compose; then
+            DOCKER_COMPOSE_CMD="docker compose"
+      else
+            echo -e "${RED}✖ Error :${ENDCOLOR} Neither 'docker-compose' nor 'docker compose' is available."
+            exit 1
+      fi
+
+      # Usage of the determined command
+      $DOCKER_COMPOSE_CMD ps 
+}
+
+# Function To Stop Docker
+stop_docker() {
+    #Determine which command to use
+      if command_runs docker-compose; then
+            DOCKER_COMPOSE_CMD="docker-compose"
+      elif command_runs docker compose; then
+            DOCKER_COMPOSE_CMD="docker compose"
+      else
+            echo -e "${RED}✖ Error :${ENDCOLOR} Neither 'docker-compose' nor 'docker compose' is available."
+            exit 1
+      fi
+
+      # Usage of the determined command
+      $DOCKER_COMPOSE_CMD down 
+}
+
+# Function To Stop Docker
+restart_docker() {
+    #Determine which command to use
+      if command_runs docker-compose; then
+            DOCKER_COMPOSE_CMD="docker-compose"
+      elif command_runs docker compose; then
+            DOCKER_COMPOSE_CMD="docker compose"
+      else
+            echo -e "${RED}✖ Error :${ENDCOLOR} Neither 'docker-compose' nor 'docker compose' is available."
+            exit 1
+      fi
+
+      # Usage of the determined command
+      $DOCKER_COMPOSE_CMD restart 
+}
+
+# Function To get inside the docker user - jarvis
+inside_docker_bash_user() {
+    #Determine which command to use
+      if command_runs docker-compose; then
+            DOCKER_COMPOSE_CMD="docker-compose"
+      elif command_runs docker compose; then
+            DOCKER_COMPOSE_CMD="docker compose"
+      else
+            echo -e "${RED}✖ Error :${ENDCOLOR} Neither 'docker-compose' nor 'docker compose' is available."
+            exit 1
+      fi
+
+      # Usage of the determined command
+      $DOCKER_COMPOSE_CMD exec webserver su jarvis 
+}
