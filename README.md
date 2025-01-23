@@ -156,7 +156,7 @@ sudo chmod -R 755 .docker/
     ```bash
     (This command must be run outside the Docker container) :
     -----------------------------------------------------------------------------
-    docker exec -it <mysql-container-name> -uroot -ppassword -e 'CREATE DATABASE magento;'
+    docker exec -it <mysql-container-name> mysql -uroot -ppassword -e 'CREATE DATABASE magento;'
     ```
   
 - **Community Edition (CE) :** To install the Community Edition (CE), use the following command:
