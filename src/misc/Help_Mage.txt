@@ -96,4 +96,29 @@ Generate Bulk Data :
 php bin/magento setup:perf:generate-fixtures /var/www/html/magento2/setup/performance-toolkit/profiles/ce/small.xml
 
 
+======================================================================================================
+i18n File Generation Command : 
+======================================================================================================
+php bin/magento i18n:collect-phrases -o app/code/Ced/ConnectBase/i18n/en_US.csv app/code/Ced/ConnectBase
+
+
+===============================================================================================
+Patch Apply : https://www.naguel.com/create-and-apply-a-patch-in-magento/
+================================================================================================
+- First Check the Module is Installed or not : cweagans/composer-patches, If Not then run the command : composer require cweagans/composer-patches
+- Add Patch File shared in the Magento root directory under the path : <magento-root>/patches/composer/ced/module-connect-base/CED001.patch
+- Add the Below lines on the Magento Root composer.json file
+"extra": {
+    "composer-exit-on-patch-failure": true,
+    "patches": {
+        "ced/module-connect-base": {
+            "#CED001 - Fix For The Shipping Price On Marketplace Orders": "patches/composer/ced/module-connect-base/CED001.patch"
+        }
+    }
+}
+- After making the above changes, Please run command : composer install.
+After that the patch will be applied successfully, you can verify the same in the output of the above command.
+
+
+
 
