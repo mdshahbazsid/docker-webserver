@@ -91,6 +91,15 @@ Generate MEQPs :
 
 
 ======================================================================================================
+Generate CPD :
+======================================================================================================
+CPD setup command
+	- wget   https://phar.phpunit.de/phpcpd.phar
+	- command to check cpd >> run below command inside cpd folder where the phpcpd.phar is located
+	  php -d memory_limit=-1 phpcpd.phar /var/www/html/magento/vendor/magento Betterthat/ --log-pmd CPD-Report.xml --min-lines 3
+
+
+======================================================================================================
 Generate Bulk Data : 
 ======================================================================================================
 php bin/magento setup:perf:generate-fixtures /var/www/html/magento2/setup/performance-toolkit/profiles/ce/small.xml
