@@ -59,6 +59,14 @@ RUN docker-php-ext-install \
   xsl \
   zip 
 
+# Install openssh-client
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends openssh-client && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install git
+RUN apt-get update && apt-get install -y git
+
 # Copy SSL certificate and key
 COPY ./../.ssl/* /etc/apache2/ssl/
 

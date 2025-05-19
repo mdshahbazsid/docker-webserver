@@ -101,20 +101,5 @@ services:
       - "${PORT_MAILHOG_UI:-8025}:8025"
     networks:
       - custom-docker-network
-      
-  ngrok:
-    image: ngrok/ngrok:latest
-    container_name: ${PHP_VERSION}_${SERVICE_USER}_ngrok
-    restart: unless-stopped
-    command:
-      - "start"
-      - "--all"
-      - "--config"
-      - "/etc/ngrok.yml"
-    volumes:
-      - ./.apache/ngrok.yml:/etc/ngrok.yml
-    ports:
-      - "${PORT_NGROK:-4040}:4040"
-    networks:
-      - custom-docker-network
+
       

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="1.0.7"
+VERSION="1.0.8"
 DOCKER_ENV_FILE="$SCRIPT_DIR/.env"
 DOCKER_FILE="$SCRIPT_DIR/.docker/Dockerfile"
 CUSTOM_PHP_INI_FILE="$SCRIPT_DIR/.docker/custom-php.ini"

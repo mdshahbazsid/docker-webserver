@@ -28,7 +28,6 @@ Installed Services :
 	- varnish                       | Port - 8082:80
 	- elasticsearch                 | Port - 9200:9200
 	- mailhog                       | Port - 8025 For UI, Port - 1025 For SMTP Server
-	- ngrok                         | Port - 4040
 
 	> .env File To declare Global Variables Like db user, password, db name.
 	> custom-php.ini File to declare php.ini variables.
@@ -45,11 +44,3 @@ To generate Self-Signed SSL Certificates :
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout server.key -out server.crt -subj "/C=US/ST=MyCountry/L=MyCity/O=MyOrganization/CN=localhost"
 
 
-To Get Public Url Of Ngrok Application
------------------------------------------------------
-http://localhost:4040/api/tunnels
-
-
-To View the Statistics of the Ngrok of the application
--------------------------------------------------------
-http://localhost:4040/

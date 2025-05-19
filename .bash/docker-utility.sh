@@ -157,10 +157,9 @@ start_docker() {
         Access your links:
 
         🌎 ${GREEN}Web server:${ENDCOLOR} http://localhost/
-        ✉️  ${GREEN}Local emails:${ENDCOLOR} http://localhost:8025
-        ⚙️  ${GREEN}PhpMyAdmin:${ENDCOLOR} http://localhost:8081
+        ✉️ ${GREEN}Local emails:${ENDCOLOR} http://localhost:8025
+        ⚙️ ${GREEN}PhpMyAdmin:${ENDCOLOR} http://localhost:8081
         🔍 ${GREEN}ElasticSearch:${ENDCOLOR} http://localhost:9200
-        ☁️  ${GREEN}Ngrok:${ENDCOLOR} http://localhost:4040
 
  ===================== 🚀 Done 🚀 ==================="
 }

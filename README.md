@@ -19,7 +19,7 @@ Docker WebServer - Apache, MySQL, and PHP
 - varnish                       | Port - 8082:80
 - elasticsearch                 | Port - 9200:9200
 - mailhog                       | Port - 8025 For UI, Port - 1025 For SMTP Server
-- ngrok                         | Port - 4040
+
 ```
 - __Webserver (Apache with PHP)__
     - __Description:__ Apache HTTP Server with PHP integration to serve dynamic web pages.
@@ -55,11 +55,6 @@ Docker WebServer - Apache, MySQL, and PHP
     - __Description:__ An email testing tool for developers that captures outgoing emails and provides a web interface to view them.
     - __Ports:__ 8025 (UI), 1025 (SMTP Server)
     - __Usage:__ It is used to test email sending functionality in web applications without sending emails to the actual recipients.
-
-- __Ngrok__
-    - __Description:__ Ngrok is a service that creates secure tunnels from the internet to your local machine. It is often used to expose local development servers to the web, which can be helpful for testing webhooks, sharing a local website, or remote debugging.
-    - __Ports:__ 4040
-    - __Usage:__ It creates a public URL (like https://your-subdomain.ngrok.io) that forwards traffic to your local server.
 
 
 ## Prerequisites
@@ -138,9 +133,6 @@ sudo chmod -R 755 .docker/
 
     ![alt text](https://github.com/mdshahbazsid/docker-webserver/blob/main/src/img/docker-elasticsearch-success.png?raw=true)
 
-- Access **Ngrok :** http://localhost:4040/
-
-    ![alt text](https://github.com/mdshahbazsid/docker-webserver/blob/main/src/img/docker-ngrok-success.png?raw=true)
   
 ## Setup Magento 2
 
