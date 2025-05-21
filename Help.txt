@@ -41,8 +41,8 @@ bash docker-inside
 
 Import Database : 
 ---------------------------------------------------------
-docker exec -t <mysql-container-name> mysql -u root -p database_name < sqldump.sql
-
+docker exec -i <mysql-container-name> mysql -u<user> -p<password> <database-name> < sqldump.sql
+NOTE : Use -f flag after mysql if to ignore the errors and execute the import (Not Recommended)
 
 To generate Self-Signed SSL Certificates : 
 -----------------------------------------------------
