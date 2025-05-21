@@ -44,6 +44,12 @@ Import Database :
 docker exec -i <mysql-container-name> mysql -u<user> -p<password> <database-name> < sqldump.sql
 NOTE : Use -f flag after mysql if to ignore the errors and execute the import (Not Recommended)
 
+To Execute Mysql Query : 
+--------------------------------------------------------------
+docker exec -i <mysql-container-name> mysql -u<user> -p<password> -e "SELECT * FROM table LIMIT 10;" <databse-name>
+docker exec -it <mysql-container-name> mysql -u<user> -p<password>
+
+
 To generate Self-Signed SSL Certificates : 
 -----------------------------------------------------
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout server.key -out server.crt -subj "/C=US/ST=MyCountry/L=MyCity/O=MyOrganization/CN=localhost"
