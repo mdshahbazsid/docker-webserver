@@ -39,6 +39,11 @@ Go Inside Docker-Container Bash :
 bash docker-inside
 
 
+Import Database : 
+---------------------------------------------------------
+docker exec -t <mysql-container-name> mysql -u root -p database_name < sqldump.sql
+
+
 To generate Self-Signed SSL Certificates : 
 -----------------------------------------------------
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout server.key -out server.crt -subj "/C=US/ST=MyCountry/L=MyCity/O=MyOrganization/CN=localhost"
