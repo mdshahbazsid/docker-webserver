@@ -77,9 +77,15 @@ COPY ./../.apache/000-default.conf /etc/apache2/sites-available/000-default.conf
 RUN a2enmod ssl && a2enmod rewrite
 
 # Install Composer
+# Downloading the composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=${COMPOSER_VERSION}
 
+# Give the permission and Set the file permissions and ownership
+RUN mkdir -p /home/$APACHE_RUN_USER/.composer && \
+chown -R $APACHE_RUN_USER:$APACHE_RUN_GROUP /home/$APACHE_RUN_USER/.composer
+
 COPY ./.docker/auth.json /home/$APACHE_RUN_USER/.composer/auth.json
+# End
 
 #Install - mhsendmail (Mail Support) [MailHog redirects emails from web apps to its SMTP server using mhsendmail, a sendmail replacement created specifically for MailHog]
 RUN curl -Lo /usr/local/bin/mhsendmail https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsendmail_linux_amd64 \
