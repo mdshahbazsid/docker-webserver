@@ -20,6 +20,7 @@ options=(
 "Php - 8.1"
 "Php - 8.2"
 "Php - 8.3"
+"Php - 8.4"
 "Quit"
 )
 select opt in "${options[@]}"
@@ -45,6 +46,8 @@ do
             update_env_variable "VARNISH_VERSION" "$VARNISH_VERSION_74"
             sleep 1
             update_env_variable "ELASTICSEARCH_VERSION" "$ELASTICSEARCH_VERSION_74"
+            sleep 1
+            update_env_variable "OPENSEARCH_VERSION" "$OPENSEARCH_VERSION_74"
             sleep 1
 
             # End the timer
@@ -77,6 +80,8 @@ do
             sleep 1
             update_env_variable "ELASTICSEARCH_VERSION" "$ELASTICSEARCH_VERSION_81"
             sleep 1
+            update_env_variable "OPENSEARCH_VERSION" "$OPENSEARCH_VERSION_81"
+            sleep 1
 
             # End the timer
             end_time=$(date +%s.%N)
@@ -108,6 +113,8 @@ do
             sleep 1
             update_env_variable "ELASTICSEARCH_VERSION" "$ELASTICSEARCH_VERSION_82"
             sleep 1
+            update_env_variable "OPENSEARCH_VERSION" "$OPENSEARCH_VERSION_82"
+            sleep 1
 
             # End the timer
             end_time=$(date +%s.%N)
@@ -138,6 +145,41 @@ do
             update_env_variable "VARNISH_VERSION" "$VARNISH_VERSION_83"
             sleep 1
             update_env_variable "ELASTICSEARCH_VERSION" "$ELASTICSEARCH_VERSION_83"
+            sleep 1
+            update_env_variable "OPENSEARCH_VERSION" "$OPENSEARCH_VERSION_83"
+            sleep 1
+
+            # End the timer
+            end_time=$(date +%s.%N)
+
+            # Calculate duration
+            duration=$(echo "$end_time - $start_time" | bc)
+            formatted_duration=$(printf "%.1fs" "$duration")
+            echo -e "${GREEN}✔${ENDCOLOR} ${CYAN}Exported Environment Variables For $opt${ENDCOLOR}               ${GREEN}${formatted_duration} Done.${ENDCOLOR}"
+            break;
+            ;;
+        "Php - 8.4")
+            echo -e "${GREEN}✔${ENDCOLOR} ${BOLDYELLOW}You Choosed : $opt${ENDCOLOR}"
+            
+            # Start the timer
+            start_time=$(date +%s.%N)
+
+            # Process
+            update_smptport_variable "$PORT_MAILHOG_SMTP"
+            sleep 1
+            update_php_variable "$PHP_VERSION_84"
+            sleep 1
+            update_env_variable "PHP_VERSION" "$PHP_VERSION_84"
+            sleep 1
+            update_env_variable "COMPOSER_VERSION" "$COMPOSER_VERSION_84"
+            sleep 1
+            update_env_variable "MARIA_DB_VERSION" "$MARIA_DB_VERSION_84"
+            sleep 1
+            update_env_variable "VARNISH_VERSION" "$VARNISH_VERSION_84"
+            sleep 1
+            update_env_variable "ELASTICSEARCH_VERSION" "$ELASTICSEARCH_VERSION_84"
+            sleep 1
+            update_env_variable "OPENSEARCH_VERSION" "$OPENSEARCH_VERSION_84"
             sleep 1
 
             # End the timer

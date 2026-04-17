@@ -3,7 +3,8 @@ Docker WebServer - Apache, MySQL, and PHP
 
 <sup><code>**Specifically engineered to seamlessly run Magento, the Adobe Commerce platform.</code></sup>
 
-## Supported PHP Versions : 
+## Supported PHP Versions :
+- Php 8.4 
 - Php 8.3
 - Php 8.2
 - Php 8.1
@@ -17,7 +18,8 @@ Docker WebServer - Apache, MySQL, and PHP
 - mariadb                       | Port - 3306:3306
 - phpmyadmin                    | Post - 8081:80
 - varnish                       | Port - 8082:80
-- elasticsearch                 | Port - 9200:9200
+- elasticsearch                 | Port - 9201:9200
+- opensearch                    | Port - 9200:9200
 - mailhog                       | Port - 8025 For UI, Port - 1025 For SMTP Server
 
 ```
@@ -47,6 +49,11 @@ Docker WebServer - Apache, MySQL, and PHP
     - __Usage:__ It is used to improve the performance of web applications by caching static content.
 
 - __Elasticsearch__
+    - __Description:__ A distributed, RESTful search and analytics engine capable of solving a growing number of use cases.
+    - __Ports:__ 9201:9200
+    - __Usage:__ It is used to index and search data for web applications.
+
+- __Opensearch__
     - __Description:__ A distributed, RESTful search and analytics engine capable of solving a growing number of use cases.
     - __Ports:__ 9200:9200
     - __Usage:__ It is used to index and search data for web applications.
@@ -129,10 +136,13 @@ sudo chmod -R 755 .docker/
 
     ![alt text](https://github.com/mdshahbazsid/docker-webserver/blob/main/src/img/docker-mailhog-success.png?raw=true)
     
-- Access **ElasticSearch :** http://localhost:9200/
+- Access **ElasticSearch :** http://localhost:9201/
 
     ![alt text](https://github.com/mdshahbazsid/docker-webserver/blob/main/src/img/docker-elasticsearch-success.png?raw=true)
 
+- Access **OpenSearch :** http://localhost:9200/
+
+    ![alt text](https://github.com/mdshahbazsid/docker-webserver/blob/main/src/img/docker-opensearch-success.png?raw=true)
   
 ## Setup Magento 2
 

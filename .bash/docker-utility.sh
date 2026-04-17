@@ -159,7 +159,8 @@ start_docker() {
         🌎 ${GREEN}Web server:${ENDCOLOR} http://localhost/
         ✉️ ${GREEN}Local emails:${ENDCOLOR} http://localhost:8025
         ⚙️ ${GREEN}PhpMyAdmin:${ENDCOLOR} http://localhost:8081
-        🔍 ${GREEN}ElasticSearch:${ENDCOLOR} http://localhost:9200
+        🔍 ${GREEN}ElasticSearch:${ENDCOLOR} http://localhost:9201
+        🔍 ${GREEN}OpenSearch:${ENDCOLOR} http://localhost:9200
 
  ===================== 🚀 Done 🚀 ==================="
 }
@@ -259,4 +260,20 @@ inside_docker_bash_user() {
 
       # Usage of the determined command
       $DOCKER_COMPOSE_CMD exec webserver su jarvis 
+}
+
+# Function To check the logs in Docker
+show_logs_docker() {
+    #Determine which command to use
+      if command_runs docker-compose; then
+            DOCKER_COMPOSE_CMD="docker-compose"
+      elif command_runs docker compose; then
+            DOCKER_COMPOSE_CMD="docker compose"
+      else
+            echo -e "${RED}✖ Error :${ENDCOLOR} Neither 'docker-compose' nor 'docker compose' is available."
+            exit 1
+      fi
+
+      # Usage of the determined command
+      $DOCKER_COMPOSE_CMD logs 
 }

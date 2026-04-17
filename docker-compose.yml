@@ -75,11 +75,11 @@ services:
     image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTICSEARCH_VERSION}
     container_name: ${PHP_VERSION}_${SERVICE_USER}_elasticsearch
     environment:
-      - cluster.name=elasticsearch-docker-cluster
+      - cluster.name=es-cluster-dev
       - bootstrap.memory_lock=true
       - discovery.type=single-node
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     ulimits:
       memlock:
         soft: -1
@@ -87,8 +87,31 @@ services:
     volumes:
       - ./.es-data:/usr/share/elasticsearch/data
     ports:
-      - "${PORT_ELASTICSEARCH:-9200}:9200"
+      - "${PORT_ELASTICSEARCH_REST_API:-9201}:9200"
+      - "${PORT_ELASTICSEARCH_TRANSPORT:-9301}:9300"
     tty: true
+    networks:
+      - custom-docker-network
+
+  opensearch:
+    image: opensearchproject/opensearch:${OPENSEARCH_VERSION}
+    container_name: ${PHP_VERSION}_${SERVICE_USER}_opensearch
+    environment:
+      - cluster.name=os-cluster-dev
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - plugins.security.disabled=true
+      - OPENSEARCH_INITIAL_ADMIN_PASSWORD=${OPENSEARCH_ADMIN_PASSWORD}
+      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./.os-data:/usr/share/opensearch/data
+    ports:
+      - "${PORT_OPENSEARCH_REST_API:-9200}:9200"
+      - "${PORT_OPENSEARCH_TRANSPORT:-9300}:9300"
     networks:
       - custom-docker-network
       
