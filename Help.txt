@@ -26,7 +26,8 @@ Installed Services :
 	- mariadb                       | Port - 3306:3306
 	- phpmyadmin                    | Post - 8081:80
 	- varnish                       | Port - 8082:80
-	- elasticsearch                 | Port - 9200:9200
+	- elasticsearch                 | Port - 9201:9200
+	- opensearch                    | Port - 9200:9200
 	- mailhog                       | Port - 8025 For UI, Port - 1025 For SMTP Server
 
 	> .env File To declare Global Variables Like db user, password, db name.

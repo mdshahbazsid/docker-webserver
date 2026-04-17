@@ -36,3 +36,8 @@ Issue : Elasticsearch service is Exiting OR Not Running OR Permission issue:
 ================================================================================
 sudo chown -R $USER:$USER .es-data/ src/ && sudo chmod -R 777 .es-data/ src/
 
+
+Issue : OpenSearch service is Exiting OR Not Running OR Permission issue:
+================================================================================
+sudo chown -R $USER:$USER .os-data/ src/ && sudo chmod -R 777 .os-data/ src/
+
