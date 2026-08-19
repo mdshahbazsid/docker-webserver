@@ -92,6 +92,12 @@ RUN curl -Lo /usr/local/bin/mhsendmail https://github.com/mailhog/mhsendmail/rel
     && chmod +x /usr/local/bin/mhsendmail
 # End
 
+# Install Adobe Commerce Cloud CLI
+RUN curl -sS https://accounts.magento.cloud/cli/installer | php \
+    && cp /root/.magento-cloud/bin/magento-cloud /usr/local/bin/magento-cloud \
+    && chmod +x /usr/local/bin/magento-cloud
+RUN magento-cloud --version
+
 # Setup Crontab
 # Copy cron file to the container
 COPY ./.apache/crontab /etc/cron.d/crontab
