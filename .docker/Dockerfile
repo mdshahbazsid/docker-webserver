@@ -45,6 +45,7 @@ RUN docker-php-ext-install \
   calendar \
   exif \
   gd \
+  ftp \
   gettext \
   intl \
   mysqli \
