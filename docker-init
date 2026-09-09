@@ -57,6 +57,7 @@ do
             duration=$(echo "$end_time - $start_time" | bc)
             formatted_duration=$(printf "%.1fs" "$duration")
             echo -e "${GREEN}✔${ENDCOLOR} ${CYAN}Exported Environment Variables For $opt${ENDCOLOR}               ${GREEN}${formatted_duration} Done.${ENDCOLOR}"
+            echo -e "${GREEN}✔${ENDCOLOR} Please run ${CYAN}bash docker-build${ENDCOLOR} to build the containers."
             break;
             ;;
         "Php - 8.1")
@@ -90,6 +91,7 @@ do
             duration=$(echo "$end_time - $start_time" | bc)
             formatted_duration=$(printf "%.1fs" "$duration")
             echo -e "${GREEN}✔${ENDCOLOR} ${CYAN}Exported Environment Variables For $opt${ENDCOLOR}               ${GREEN}${formatted_duration} Done.${ENDCOLOR}"
+            echo -e "${GREEN}✔${ENDCOLOR} Please run ${CYAN}bash docker-build${ENDCOLOR} to build the containers."
             break;
             ;;
         "Php - 8.2")
@@ -123,6 +125,7 @@ do
             duration=$(echo "$end_time - $start_time" | bc)
             formatted_duration=$(printf "%.1fs" "$duration")
             echo -e "${GREEN}✔${ENDCOLOR} ${CYAN}Exported Environment Variables For $opt${ENDCOLOR}               ${GREEN}${formatted_duration} Done.${ENDCOLOR}"
+            echo -e "${GREEN}✔${ENDCOLOR} Please run ${CYAN}bash docker-build${ENDCOLOR} to build the containers."
             break;
             ;;
         "Php - 8.3")
@@ -156,6 +159,7 @@ do
             duration=$(echo "$end_time - $start_time" | bc)
             formatted_duration=$(printf "%.1fs" "$duration")
             echo -e "${GREEN}✔${ENDCOLOR} ${CYAN}Exported Environment Variables For $opt${ENDCOLOR}               ${GREEN}${formatted_duration} Done.${ENDCOLOR}"
+            echo -e "${GREEN}✔${ENDCOLOR} Please run ${CYAN}bash docker-build${ENDCOLOR} to build the containers."
             break;
             ;;
         "Php - 8.4")
@@ -189,6 +193,7 @@ do
             duration=$(echo "$end_time - $start_time" | bc)
             formatted_duration=$(printf "%.1fs" "$duration")
             echo -e "${GREEN}✔${ENDCOLOR} ${CYAN}Exported Environment Variables For $opt${ENDCOLOR}               ${GREEN}${formatted_duration} Done.${ENDCOLOR}"
+            echo -e "${GREEN}✔${ENDCOLOR} Please run ${CYAN}bash docker-build${ENDCOLOR} to build the containers."
             break;
             ;;
         "Quit")
@@ -198,4 +203,3 @@ do
         *) echo -e "${RED}✖${ENDCOLOR} ${BOLDRED}Invalid Option : $REPLY ${ENDCOLOR}";;
     esac
 done
-
